@@ -1,0 +1,15 @@
+C:\Users\Gilles\source\repos\POO\Exercices\ConsoleApp1\bin\Debug\net10.0\Exercices.exe
+C:\Users\Gilles\source\repos\POO\Exercices\ConsoleApp1\bin\Debug\net10.0\Exercices.deps.json
+C:\Users\Gilles\source\repos\POO\Exercices\ConsoleApp1\bin\Debug\net10.0\Exercices.runtimeconfig.json
+C:\Users\Gilles\source\repos\POO\Exercices\ConsoleApp1\bin\Debug\net10.0\Exercices.dll
+C:\Users\Gilles\source\repos\POO\Exercices\ConsoleApp1\bin\Debug\net10.0\Exercices.pdb
+C:\Users\Gilles\source\repos\POO\Exercices\ConsoleApp1\obj\Debug\net10.0\Exercices.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Gilles\source\repos\POO\Exercices\ConsoleApp1\obj\Debug\net10.0\Exercices.AssemblyInfoInputs.cache
+C:\Users\Gilles\source\repos\POO\Exercices\ConsoleApp1\obj\Debug\net10.0\Exercices.AssemblyInfo.cs
+C:\Users\Gilles\source\repos\POO\Exercices\ConsoleApp1\obj\Debug\net10.0\Exercices.csproj.CoreCompileInputs.cache
+C:\Users\Gilles\source\repos\POO\Exercices\ConsoleApp1\obj\Debug\net10.0\Exercices.sourcelink.json
+C:\Users\Gilles\source\repos\POO\Exercices\ConsoleApp1\obj\Debug\net10.0\Exercices.dll
+C:\Users\Gilles\source\repos\POO\Exercices\ConsoleApp1\obj\Debug\net10.0\refint\Exercices.dll
+C:\Users\Gilles\source\repos\POO\Exercices\ConsoleApp1\obj\Debug\net10.0\Exercices.pdb
+C:\Users\Gilles\source\repos\POO\Exercices\ConsoleApp1\obj\Debug\net10.0\Exercices.genruntimeconfig.cache
+C:\Users\Gilles\source\repos\POO\Exercices\ConsoleApp1\obj\Debug\net10.0\ref\Exercices.dll
