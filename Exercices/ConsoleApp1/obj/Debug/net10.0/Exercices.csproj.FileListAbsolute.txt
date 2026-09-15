@@ -13,3 +13,4 @@ C:\Users\Gilles\source\repos\POO\Exercices\ConsoleApp1\obj\Debug\net10.0\refint\
 C:\Users\Gilles\source\repos\POO\Exercices\ConsoleApp1\obj\Debug\net10.0\Exercices.pdb
 C:\Users\Gilles\source\repos\POO\Exercices\ConsoleApp1\obj\Debug\net10.0\Exercices.genruntimeconfig.cache
 C:\Users\Gilles\source\repos\POO\Exercices\ConsoleApp1\obj\Debug\net10.0\ref\Exercices.dll
+C:\Users\Gilles\source\repos\POO\Exercices\ConsoleApp1\obj\Debug\net10.0\Exercices.csproj.Up2Date
