@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Exercices.ExercicesClasses
@@ -102,6 +103,117 @@ namespace Exercices.ExercicesClasses
                 Console.WriteLine("Retrait impossible, solde insuffisant");
             else _solde -= val;
             return _solde;
+        }
+    }
+
+    /*
+     Exercice 4 : Utilisation d'une classe avec des objets en paramètre
+        1. Crée une classe Produit avec les propriétés suivantes :
+            ○ Nom (string)
+            ○ Prix (decimal)
+        2. Crée une classe Panier qui contient une liste de produits. Cette classe aura
+        les méthodes suivantes :
+            ○ AjouterProduit(Produit p) : Ajoute un produit au panier.
+            ○ SupprimerProduit(Produit p) : Supprime un produit du panier.
+            ○ AfficherPanier() : Affiche tous les produits du panier et le prix
+        total.
+        3. Dans le programme principal, crée plusieurs objets de type Produit,
+        ajoute-les à un panier et affiche le contenu du panier.
+        4. Affiche le montant total du produit
+     */
+    public class Produit
+    {        
+        public string Nom {  get; set; }
+        public double Prix { get; set; }
+        public Produit(string Nom, double Prix)
+        {
+            this.Nom = Nom;
+            this.Prix = Prix;
+        }
+    }
+
+    public class Panier
+    {
+        public List<Produit> listeProduits = new List<Produit>();
+
+        public void AjouterProduit(Produit p){
+            listeProduits.Add(p);
+        }
+
+        public void SupprimerProduit(Produit p)
+        {
+            listeProduits.Remove(p);
+        }
+
+        public void AfficherPanier()
+        {
+            double total = 0;
+            foreach (var produit in listeProduits) 
+            { 
+                Console.WriteLine($"{produit.Nom} : {produit.Prix}");
+                total += produit.Prix;
+            }
+            Console.WriteLine($"Total : {total}");
+        }
+    }
+
+    /*
+    Exercice 5 : Création d’une application de gestion de bibliothèque
+        Crée une classe Livre avec :
+            ● Id, Titre, Auteur, Annee
+        Crée une classe Bibliotheque avec :
+            ● une liste de Livre
+            ● une méthode AjouterLivre(Livre livre)
+            ● une méthode RetirerLivre(Id)
+            ● une méthode AfficherLivres()
+            ● une méthode RechercherLivre(string recherche)
+        Dans le programme principal, ajoute plusieurs livres et permet à l’utilisateur :
+            ● de rechercher un livre par titre, auteur ou année.
+            ● d’ajouter un nouveau livre
+            ● de supprimer un livre
+            ● d’afficher tous les livres disponibles
+    */
+    public class Livre
+    {
+        public int Id { get; set; }
+        public string Titre { get; set; }
+        public string Auteur { get; set; }
+        public int Annee { get; set; }
+        public string ToString()
+        {
+            return $"{Titre} - {Auteur} {Annee}";
+        }
+    }
+
+    public class Bibliotheque
+    {
+        private List<Livre> _listeLivres = new List<Livre>();
+        public void AjouterLivre(Livre livre)
+        {
+            _listeLivres.Add(livre);
+        }
+
+        public bool RetirerLivre(int Id)
+        {
+            Livre livreARetirer = _listeLivres.Find(livre => livre.Id == Id);
+            if (livreARetirer is null) return false; 
+            _listeLivres.Remove(livreARetirer);
+            return true;    
+        }
+
+        public void AfficherLivres()
+        {
+            foreach (Livre livre in _listeLivres) Console.WriteLine(livre.ToString());
+        }
+
+        public Livre RechercherLivre(string recherche)
+        {
+            _listeLivres.Find(
+                delegate (Livre livre)
+                {
+                    return livre.Titre.Contains(recherche);
+                }
+                );
         }
     }
 }
