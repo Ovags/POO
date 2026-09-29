@@ -211,7 +211,7 @@ namespace Exercices.ExercicesClasses
             _listeLivres.Find(
                 delegate (Livre livre)
                 {
-                    return livre.Titre.Contains(recherche);
+                    return livre.Titre.Contains(recherche) || livre.Auteur.Contains(recherche);
                 }
                 );
         }
