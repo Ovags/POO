@@ -175,7 +175,7 @@ namespace Exercices.ExercicesClasses
     */
     public class Livre
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Titre { get; set; }
         public string Auteur { get; set; }
         public int Annee { get; set; }
@@ -193,7 +193,7 @@ namespace Exercices.ExercicesClasses
             _listeLivres.Add(livre);
         }
 
-        public bool RetirerLivre(int Id)
+        public bool RetirerLivre(string Id)
         {
             Livre livreARetirer = _listeLivres.Find(livre => livre.Id == Id);
             if (livreARetirer is null) return false; 
@@ -208,12 +208,33 @@ namespace Exercices.ExercicesClasses
 
         public Livre RechercherLivre(string recherche)
         {
-            _listeLivres.Find(
-                delegate (Livre livre)
-                {
-                    return livre.Titre.Contains(recherche) || livre.Auteur.Contains(recherche);
-                }
-                );
+            return _listeLivres.Find(livre =>
+                livre.Titre.Contains(recherche) ||
+                livre.Auteur.Contains(recherche)||
+                livre.Id.Contains(recherche)
+            );
         }
     }
 }
+
+public class Hotel
+{
+
+}
+
+public class Chambre
+{
+    public enum typeChambre {ChambreSimple = 1, ChambreDouble = 2};
+    public int Numero { get; init; }
+    public typeChambre capacite { get; set; }
+    public decimal prix {  get; set; }
+
+}
+
+public class Reservation
+{
+    public Chambre Chambre { get; set; }
+    public string DateDebut { get; set; }
+    public string DateFin { get; set; }
+}
+

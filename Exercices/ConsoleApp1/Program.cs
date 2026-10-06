@@ -26,11 +26,11 @@ panier.AfficherPanier();*/
 
 Livre livre1 = new Livre();
 Livre livre2 = new Livre();
-livre1.Id = 1;
+livre1.Id = "1";
 livre1.Auteur = "Jules Verge";
 livre1.Titre = "20000 vieux sous grand-mère";
 livre1.Annee = 1769;
-livre2 .Id = 2;
+livre2 .Id = "2";
 livre2.Auteur = "Jules Verge";
 livre2.Titre = "Le trou immonde en 80 jours";
 livre2.Annee = 1800;
@@ -38,5 +38,6 @@ Bibliotheque bibliotheque =  new Bibliotheque();
 bibliotheque.AjouterLivre(livre1);
 bibliotheque.AjouterLivre(livre2);
 bibliotheque.AfficherLivres();
-bibliotheque.RetirerLivre(1);
+bibliotheque.RetirerLivre("1");
 bibliotheque.AfficherLivres();
+Console.WriteLine(bibliotheque.RechercherLivre("trou").ToString());
