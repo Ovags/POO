@@ -217,24 +217,65 @@ namespace Exercices.ExercicesClasses
     }
 }
 
+/*
+ Projet : Programme de gestion de chambres d’hôtels
+    Écris un programme qui permet à un propriétaire d’hôtel de gérer ses chambres.
+    Fonctionnalités à implémenter
+        1. Chambres
+            ○ Ajouter une chambre.
+            ○ Lister toutes les chambres (afficher numéro, type, prix, capacité).
+            ○ Rechercher des chambres par type (ex: toutes les “Double”).
+        2. Disponibilités
+            ○ Saisir une période Arrivée–Départ et afficher les chambres libres.
+        3. Réservations
+            ○ Créer une réservation si la chambre est libre sur la période.
+            ○ Lister les réservations (toutes ou par numéro de chambre).
+            ○ Annuler une réservation future.
+    Contraintes métier
+        - Chaque chambre possède un numéro UNIQUE
+        - Le prix d’une chambre est toujours supérieur à 0€.
+        - La capacité d’une chambre est au minimum d’une personne.
+        - Lors d’une réservation, la date de sortie ne doit pas être antérieure à la date
+        d’entrée
+        - Deux réservations ne peuvent pas se chevaucher pour une même chambre
+        - On ajoute pas de réservation si la chambre n’existe pas
+ */
+
 public class Hotel
 {
+    public List<Chambre> Chambres = new();
+    public List<Reservation> Reservations = new();
 
+    public Chambre CreerChambreSimple(decimal prix)
+    {
+        return (new Chambre(Chambres.Count() + 1, Chambre.typeChambre.ChambreSimple, prix));
+    }
+
+    public Chambre CreerChambreDouble(decimal prix)
+    {
+        return(new Chambre(Chambres.Count() + 1, Chambre.typeChambre.ChambreDouble, prix));
+    }
 }
 
 public class Chambre
 {
-    public enum typeChambre {ChambreSimple = 1, ChambreDouble = 2};
+    public enum typeChambre {ChambreSimple, ChambreDouble};
     public int Numero { get; init; }
-    public typeChambre capacite { get; set; }
-    public decimal prix {  get; set; }
+    public typeChambre Capacite { get; set; }
+    public decimal Prix {  get; set; }
 
+    public Chambre(int numero, typeChambre tc, decimal prix)
+    {
+        Numero = numero;
+        Capacite = tc;
+        Prix = prix;
+    }
 }
 
 public class Reservation
 {
-    public Chambre Chambre { get; set; }
-    public string DateDebut { get; set; }
-    public string DateFin { get; set; }
+    public int NumeroChambre { get; set; }
+    public DateTime DateDebut { get; set; }
+    public DateTime DateFin { get; set; }
 }
 
