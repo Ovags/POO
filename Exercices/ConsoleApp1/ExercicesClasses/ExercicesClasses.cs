@@ -222,53 +222,121 @@ namespace Exercices.ExercicesClasses
     Écris un programme qui permet à un propriétaire d’hôtel de gérer ses chambres.
     Fonctionnalités à implémenter
         1. Chambres
-            ○ Ajouter une chambre.
-            ○ Lister toutes les chambres (afficher numéro, type, prix, capacité).
-            ○ Rechercher des chambres par type (ex: toutes les “Double”).
+            ○ Ajouter une chambre.                                                  OK
+            ○ Lister toutes les chambres (afficher numéro, type, prix, capacité).   OK
+            ○ Rechercher des chambres par type (ex: toutes les “Double”).           OK
         2. Disponibilités
-            ○ Saisir une période Arrivée–Départ et afficher les chambres libres.
+            ○ Saisir une période Arrivée–Départ et afficher les chambres libres.    OK
         3. Réservations
-            ○ Créer une réservation si la chambre est libre sur la période.
-            ○ Lister les réservations (toutes ou par numéro de chambre).
-            ○ Annuler une réservation future.
+            ○ Créer une réservation si la chambre est libre sur la période.         NOK
+            ○ Lister les réservations (toutes ou par numéro de chambre).            NOK
+            ○ Annuler une réservation future.                                       NOK
     Contraintes métier
-        - Chaque chambre possède un numéro UNIQUE
-        - Le prix d’une chambre est toujours supérieur à 0€.
-        - La capacité d’une chambre est au minimum d’une personne.
-        - Lors d’une réservation, la date de sortie ne doit pas être antérieure à la date
-        d’entrée
-        - Deux réservations ne peuvent pas se chevaucher pour une même chambre
-        - On ajoute pas de réservation si la chambre n’existe pas
+        - Chaque chambre possède un numéro UNIQUE                                   OK
+        - Le prix d’une chambre est toujours supérieur à 0€.                        NOK
+        - La capacité d’une chambre est au minimum d’une personne.                  NOK
+        - Lors d’une réservation, la date de sortie ne doit pas être antérieure à   
+        la date d’entrée                                                            NOK
+        - Deux réservations ne peuvent pas se chevaucher pour une même chambre      NOK
+        - On ajoute pas de réservation si la chambre n’existe pas                   NOK
  */
 
 public class Hotel
 {
     public List<Chambre> Chambres = new();
     public List<Reservation> Reservations = new();
+    public Dictionary<string, int> TypesChambres = new();
 
-    public Chambre CreerChambreSimple(decimal prix)
+    public Chambre AjouterChambre(int numeroChambre, decimal prix, string typeChambre, int capacite)
     {
-        return (new Chambre(Chambres.Count() + 1, Chambre.typeChambre.ChambreSimple, prix));
+        if (!TypesChambres.ContainsKey(typeChambre))
+                TypesChambres.Add(typeChambre, capacite);
+
+        Chambre nouvelleChambre = new Chambre(numeroChambre, prix, typeChambre, capacite);
+
+        Chambres.Add(nouvelleChambre);
+
+        return (nouvelleChambre);
     }
 
-    public Chambre CreerChambreDouble(decimal prix)
+    public void ListerChambres()
     {
-        return(new Chambre(Chambres.Count() + 1, Chambre.typeChambre.ChambreDouble, prix));
+        foreach (var chambre in Chambres) Console.WriteLine(chambre);
     }
+
+    public void ListerChambresParType(string typeChambre)
+    {
+        if (TypesChambres.ContainsKey(typeChambre))
+        {
+            foreach (var chambre in Chambres)
+                if (chambre.TypeChambre == typeChambre)
+                    Console.WriteLine(chambre);
+        }
+        else Console.WriteLine($"Aucune chambre du type {typeChambre} n'existe.");
+    }
+
+    public Boolean PeriodesSeChevauchent(
+        DateTime dateDebut1, DateTime dateFin1, DateTime dateDebut2, DateTime dateFin2)
+    {
+        return (dateDebut1 < dateFin2 && dateFin1 > dateDebut2;
+    }
+
+    private Boolean ChambreLibrePourPeriode(int numeroChambre, DateTime dateDebut, DateTime dateFin)
+    {
+        foreach (var reservation in Reservations)
+        {
+            if (reservation.NumeroChambre == numeroChambre)
+            {
+                if (PeriodesSeChevauchent(reservation.DateDebut, reservation.DateFin,
+                    dateDebut, dateFin)) return false;
+            }
+        }
+        return true;
+    }
+    
+    public void ListerChambresLibresParPeriode(DateTime dateDebut, DateTime dateFin)
+    {
+        List<Chambre> chambresTriees = Chambres;
+
+        foreach (var chambre in Chambres)
+        {
+            if (!ChambreLibrePourPeriode(chambre.Numero, dateDebut, dateFin))
+                chambresTriees.Remove(chambre);
+        }
+    }
+
+    public Reservation CreerReservation(int numeroChambre, DateTime dateDebut, DateTime dateFin)
+    {
+        private Boolean chambreExiste = false;
+        return null;
+    }
+
+
 }
 
 public class Chambre
 {
-    public enum typeChambre {ChambreSimple, ChambreDouble};
+    public string TypeChambre { get; set; }
+    public int CapaciteChambre { get; set; }
     public int Numero { get; init; }
-    public typeChambre Capacite { get; set; }
     public decimal Prix {  get; set; }
 
-    public Chambre(int numero, typeChambre tc, decimal prix)
+    public void SetTypeChambre(string typeChambre, int capaciteChambre)
+    {
+        TypeChambre = typeChambre;
+        CapaciteChambre = capaciteChambre;
+    }
+
+    public Chambre(int numero, decimal prix, string typeChambre, int capaciteChambre)
     {
         Numero = numero;
-        Capacite = tc;
         Prix = prix;
+        SetTypeChambre(typeChambre, capaciteChambre);
+    }
+
+    public override string ToString()
+    {
+        return $"{Numero} {TypeChambre} ({CapaciteChambre} personnes) - Prix : {Prix}";
     }
 }
 
@@ -277,5 +345,12 @@ public class Reservation
     public int NumeroChambre { get; set; }
     public DateTime DateDebut { get; set; }
     public DateTime DateFin { get; set; }
+
+    public Reservation(int numero,  DateTime dateDebut, DateTime dateFin)
+    {
+        NumeroChambre = numero;
+        DateDebut = dateDebut;
+        DateFin = dateFin;
+    }
 }
 
