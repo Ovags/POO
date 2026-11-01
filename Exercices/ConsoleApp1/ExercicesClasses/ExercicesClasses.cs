@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -32,7 +33,9 @@ namespace Exercices.ExercicesClasses
         public string Marque { get; set; }
         public string Modele { get; set; }
         public string SousModele { get; set; }
-        public int NombreDePortes { get; 
+        public int NombreDePortes
+        {
+            get;
             set
             {
                 if (value < 2 || value > 5)
@@ -50,8 +53,8 @@ namespace Exercices.ExercicesClasses
         public Voiture(string marque, string modele, int nombreDePortes)
         {
             Marque = marque;
-            Modele= modele;
-            NombreDePortes= nombreDePortes;
+            Modele = modele;
+            NombreDePortes = nombreDePortes;
         }
 
         public void Demarrer()
@@ -91,7 +94,7 @@ namespace Exercices.ExercicesClasses
             _solde = solde;
         }
 
-        public float Deposer(float val) 
+        public float Deposer(float val)
         {
             _solde += val;
             return _solde;
@@ -122,8 +125,8 @@ namespace Exercices.ExercicesClasses
         4. Affiche le montant total du produit
      */
     public class Produit
-    {        
-        public string Nom {  get; set; }
+    {
+        public string Nom { get; set; }
         public double Prix { get; set; }
         public Produit(string Nom, double Prix)
         {
@@ -136,7 +139,8 @@ namespace Exercices.ExercicesClasses
     {
         public List<Produit> listeProduits = new List<Produit>();
 
-        public void AjouterProduit(Produit p){
+        public void AjouterProduit(Produit p)
+        {
             listeProduits.Add(p);
         }
 
@@ -148,8 +152,8 @@ namespace Exercices.ExercicesClasses
         public void AfficherPanier()
         {
             double total = 0;
-            foreach (var produit in listeProduits) 
-            { 
+            foreach (var produit in listeProduits)
+            {
                 Console.WriteLine($"{produit.Nom} : {produit.Prix}");
                 total += produit.Prix;
             }
@@ -196,9 +200,9 @@ namespace Exercices.ExercicesClasses
         public bool RetirerLivre(string Id)
         {
             Livre livreARetirer = _listeLivres.Find(livre => livre.Id == Id);
-            if (livreARetirer is null) return false; 
+            if (livreARetirer is null) return false;
             _listeLivres.Remove(livreARetirer);
-            return true;    
+            return true;
         }
 
         public void AfficherLivres()
@@ -210,7 +214,7 @@ namespace Exercices.ExercicesClasses
         {
             return _listeLivres.Find(livre =>
                 livre.Titre.Contains(recherche) ||
-                livre.Auteur.Contains(recherche)||
+                livre.Auteur.Contains(recherche) ||
                 livre.Id.Contains(recherche)
             );
         }
@@ -228,17 +232,17 @@ namespace Exercices.ExercicesClasses
         2. Disponibilités
             ○ Saisir une période Arrivée–Départ et afficher les chambres libres.    OK
         3. Réservations
-            ○ Créer une réservation si la chambre est libre sur la période.         NOK
-            ○ Lister les réservations (toutes ou par numéro de chambre).            NOK
-            ○ Annuler une réservation future.                                       NOK
+            ○ Créer une réservation si la chambre est libre sur la période.         OK
+            ○ Lister les réservations (toutes ou par numéro de chambre).            OK
+            ○ Annuler une réservation future.                                       OK
     Contraintes métier
         - Chaque chambre possède un numéro UNIQUE                                   OK
-        - Le prix d’une chambre est toujours supérieur à 0€.                        NOK
-        - La capacité d’une chambre est au minimum d’une personne.                  NOK
+        - Le prix d’une chambre est toujours supérieur à 0€.                        OK
+        - La capacité d’une chambre est au minimum d’une personne.                  OK
         - Lors d’une réservation, la date de sortie ne doit pas être antérieure à   
         la date d’entrée                                                            NOK
         - Deux réservations ne peuvent pas se chevaucher pour une même chambre      NOK
-        - On ajoute pas de réservation si la chambre n’existe pas                   NOK
+        - On ajoute pas de réservation si la chambre n’existe pas                   OK
  */
 
 public class Hotel
@@ -249,8 +253,9 @@ public class Hotel
 
     public Chambre AjouterChambre(int numeroChambre, decimal prix, string typeChambre, int capacite)
     {
+        if (prix < 0 || capacite < 1) return null;
         if (!TypesChambres.ContainsKey(typeChambre))
-                TypesChambres.Add(typeChambre, capacite);
+            TypesChambres.Add(typeChambre, capacite);
 
         Chambre nouvelleChambre = new Chambre(numeroChambre, prix, typeChambre, capacite);
 
@@ -278,7 +283,7 @@ public class Hotel
     public Boolean PeriodesSeChevauchent(
         DateTime dateDebut1, DateTime dateFin1, DateTime dateDebut2, DateTime dateFin2)
     {
-        return (dateDebut1 < dateFin2 && dateFin1 > dateDebut2;
+        return (dateDebut1 < dateFin2 && dateFin1 > dateDebut2);
     }
 
     private Boolean ChambreLibrePourPeriode(int numeroChambre, DateTime dateDebut, DateTime dateFin)
@@ -293,7 +298,7 @@ public class Hotel
         }
         return true;
     }
-    
+
     public void ListerChambresLibresParPeriode(DateTime dateDebut, DateTime dateFin)
     {
         List<Chambre> chambresTriees = Chambres;
@@ -307,11 +312,40 @@ public class Hotel
 
     public Reservation CreerReservation(int numeroChambre, DateTime dateDebut, DateTime dateFin)
     {
-        private Boolean chambreExiste = false;
-        return null;
+        foreach (var chambre in Chambres)
+            if (chambre.Numero == numeroChambre) return null;
+
+        if (!ChambreLibrePourPeriode(numeroChambre, dateDebut, dateFin)) return null;
+
+        return new Reservation(numeroChambre, dateDebut, dateFin);
     }
 
+    public Boolean AnnulerReservation(int numeroChambre, DateTime dateDebut, DateTime dateFin)
+    {
+        foreach (var reservation in Reservations)
+            if (numeroChambre == reservation.NumeroChambre &&
+                dateDebut == reservation.DateDebut &&
+                dateFin == reservation.DateFin)
+            {
+                Reservations.Remove(reservation);
+                return true;
+            }
 
+        return false;
+    }
+
+    public void ListerReservations()
+    {
+        foreach (var reservation in Reservations)
+            Console.WriteLine(reservation);
+    }
+
+    public void ListerReservationsParNumeroDeChambre(int numeroChambre)
+    {
+        foreach (var reservation in Reservations)
+            if (reservation.NumeroChambre == numeroChambre)
+                Console.WriteLine(reservation);
+    }
 }
 
 public class Chambre
@@ -319,7 +353,7 @@ public class Chambre
     public string TypeChambre { get; set; }
     public int CapaciteChambre { get; set; }
     public int Numero { get; init; }
-    public decimal Prix {  get; set; }
+    public decimal Prix { get; set; }
 
     public void SetTypeChambre(string typeChambre, int capaciteChambre)
     {
@@ -346,11 +380,16 @@ public class Reservation
     public DateTime DateDebut { get; set; }
     public DateTime DateFin { get; set; }
 
-    public Reservation(int numero,  DateTime dateDebut, DateTime dateFin)
+    public Reservation(int numero, DateTime dateDebut, DateTime dateFin)
     {
         NumeroChambre = numero;
         DateDebut = dateDebut;
         DateFin = dateFin;
     }
-}
 
+    public override string ToString()
+    {
+        CultureInfo culture = new CultureInfo("fr-BE");
+        return $"Chambre {NumeroChambre}: Du {DateDebut.ToString("d", culture)} au {DateFin.ToString("d", culture)}";
+    }
+}
