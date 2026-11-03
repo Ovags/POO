@@ -312,6 +312,23 @@ public class Hotel
 
     public Reservation CreerReservation(int numeroChambre, DateTime dateDebut, DateTime dateFin)
     {
+        if (dateDebut > dateFin) 
+        {
+            Console.WriteLine("La date de début est postérieure à la date de fin");
+
+            return null;
+        } 
+
+        foreach (var reservation in Reservations)
+        {
+            if (PeriodesSeChevauchent(reservation.DateDebut, reservation.DateFin, dateDebut, dateFin))
+            {
+                Console.WriteLine("Les dates se chevauchent");
+
+                return null;
+            }
+        }
+
         foreach (var chambre in Chambres)
             if (chambre.Numero == numeroChambre) return null;
 
