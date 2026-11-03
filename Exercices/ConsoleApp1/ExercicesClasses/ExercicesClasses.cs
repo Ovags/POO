@@ -407,6 +407,7 @@ public class Reservation
     public override string ToString()
     {
         CultureInfo culture = new CultureInfo("fr-BE");
+
         return $"Chambre {NumeroChambre}: Du {DateDebut.ToString("d", culture)} au {DateFin.ToString("d", culture)}";
     }
 }
