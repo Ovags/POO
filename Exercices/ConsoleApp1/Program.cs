@@ -1,6 +1,7 @@
 ﻿//using ConsoleApp1.ExercicesDictionnaires;
 using System.Diagnostics;
 using Exercices.ExercicesClasses;
+using Exercices.ExercicesHeritage;
 ///*Voiture voiture = new Voiture("Bentley", "Continental", 3);
 //voiture.Demarrer();*/
 
@@ -43,22 +44,29 @@ using Exercices.ExercicesClasses;
 //bibliotheque.AfficherLivres();
 //Console.WriteLine(bibliotheque.RechercherLivre("trou").ToString());
 
-Hotel hotel = new Hotel();
-hotel.AjouterChambre(69, "simple", 1);
-hotel.AjouterChambre(69, "simple", 1);
-hotel.AjouterChambre(69, "simple", 1);
-hotel.AjouterChambre(69, "simple", 1);
-hotel.AjouterChambre(100, "double", 2);
-hotel.AjouterChambre(100, "double", 2);
-hotel.AjouterChambre(100, "double", 2);
-Console.WriteLine("Liste des chambres");
-hotel.ListerChambres();
-Console.WriteLine("\n\nListe des chambres de type simple");
-hotel.ListerChambresParType("simple");
-DateTime dateDebut1 = new DateTime(2026, 11, 1);
-DateTime dateFin1 = new DateTime(2026, 11, 30);
-DateTime dateDebut2 = new DateTime(2026, 10, 1);
-DateTime dateFin2 = new DateTime(2026, 10, 2);
-Console.WriteLine(hotel.PeriodesSeChevauchent(
-    dateDebut1, dateFin1, dateDebut2, dateFin2));
+//Hotel hotel = new Hotel();
+//hotel.AjouterChambre(69, "simple", 1);
+//hotel.AjouterChambre(69, "simple", 1);
+//hotel.AjouterChambre(69, "simple", 1);
+//hotel.AjouterChambre(69, "simple", 1);
+//hotel.AjouterChambre(100, "double", 2);
+//hotel.AjouterChambre(100, "double", 2);
+//hotel.AjouterChambre(100, "double", 2);
+//Console.WriteLine("Liste des chambres");
+//hotel.ListerChambres();
+//Console.WriteLine("\n\nListe des chambres de type simple");
+//hotel.ListerChambresParType("simple");
+//DateTime dateDebut1 = new DateTime(2026, 11, 1);
+//DateTime dateFin1 = new DateTime(2026, 11, 30);
+//DateTime dateDebut2 = new DateTime(2026, 10, 1);
+//DateTime dateFin2 = new DateTime(2026, 10, 2);
+//Console.WriteLine(hotel.PeriodesSeChevauchent(
+//    dateDebut1, dateFin1, dateDebut2, dateFin2));
+//Console.ReadLine();
+
+Véhicule vehicule = new();
+vehicule.Marque = "bite";
+vehicule.Année = 1969;
+vehicule.caçahfzriezg = "test";
+Console.WriteLine($"{vehicule.Marque} - {vehicule.Année} : {vehicule.caçahfzriezg}");
 Console.ReadLine();
