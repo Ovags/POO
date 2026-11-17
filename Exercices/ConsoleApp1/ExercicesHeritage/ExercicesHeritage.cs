@@ -19,10 +19,20 @@ namespace Exercices.ExercicesHeritage
     public class Voiture : Véhicule
     {
         public int NombrePortes { get; set; }
+        
+        public override string ToString()
+        {
+            return $"{Marque} - {Année} : Nombre de portes : {NombrePortes}";
+        }
     }
 
     public class Camion : Véhicule
     {
         public double CapacitéChargement {  get; set; }
+
+        public override string ToString()
+        {
+            return $"{Marque} - {Année} : Capacité de chargement (T) : {CapacitéChargement}";
+        }
     }
 }

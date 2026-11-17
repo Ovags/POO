@@ -1,6 +1,6 @@
 ﻿//using ConsoleApp1.ExercicesDictionnaires;
 using System.Diagnostics;
-using Exercices.ExercicesClasses;
+//using Exercices.ExercicesClasses;
 using Exercices.ExercicesHeritage;
 ///*Voiture voiture = new Voiture("Bentley", "Continental", 3);
 //voiture.Demarrer();*/
@@ -67,6 +67,14 @@ using Exercices.ExercicesHeritage;
 Véhicule vehicule = new();
 vehicule.Marque = "bite";
 vehicule.Année = 1969;
-vehicule.caçahfzriezg = "test";
-Console.WriteLine($"{vehicule.Marque} - {vehicule.Année} : {vehicule.caçahfzriezg}");
+Voiture voiture = new();
+voiture.Marque = "Fiat";
+voiture.Année = 2015;
+voiture.NombrePortes = 5;
+Camion camion = new();
+camion.Marque = "Man";
+camion.Année = 2000;
+camion.CapacitéChargement = 36;
+Console.WriteLine(voiture);
+Console.WriteLine(camion);
 Console.ReadLine();
