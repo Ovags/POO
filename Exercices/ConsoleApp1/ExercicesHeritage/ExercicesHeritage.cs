@@ -10,10 +10,19 @@ namespace Exercices.ExercicesHeritage
     ● Un camion possède une capacité de chargement (en tonnes).
     ● On souhaite pouvoir afficher les informations complètes d’un véhicule.
     */
-    public class Vehicule
+    public class Véhicule
     {
         public string Marque { get; set; }
         public int Année { get; set; }
-        public string caçahfzriezg { get; set; }
+    }
+
+    public class Voiture : Véhicule
+    {
+        public int NombrePortes { get; set; }
+    }
+
+    public class Camion : Véhicule
+    {
+        public double CapacitéChargement {  get; set; }
     }
 }
