@@ -19,7 +19,7 @@ namespace Exercices.ExercicesHeritage
     public class Voiture : Véhicule
     {
         public int NombrePortes { get; set; }
-        
+
         public override string ToString()
         {
             return $"{Marque} - {Année} : Nombre de portes : {NombrePortes}";
@@ -28,7 +28,7 @@ namespace Exercices.ExercicesHeritage
 
     public class Camion : Véhicule
     {
-        public double CapacitéChargement {  get; set; }
+        public double CapacitéChargement { get; set; }
 
         public override string ToString()
         {
@@ -36,25 +36,25 @@ namespace Exercices.ExercicesHeritage
         }
     }
 
-/*
-Exercice 2 – Gestion d’école
-Une école veut développer un programme pour sa gestion.
-Plusieurs types de personnes seront renseignées dans ce système :
-    ● Les enseignants
-    ● Les étudiants
-Spécificités :
-Toutes les personnes ont un nom et un prénom.
-Mais :
-    ● Un enseignant a en plus une matière enseignée.
-    ● Un étudiant a un numéro de matricule et une année d’étude.
-    ● On souhaite pouvoir afficher le détail d’un élève ou d’un enseignant
-*/
-public abstract class Personne
+    /*
+    Exercice 2 – Gestion d’école
+    Une école veut développer un programme pour sa gestion.
+    Plusieurs types de personnes seront renseignées dans ce système :
+        ● Les enseignants
+        ● Les étudiants
+    Spécificités :
+    Toutes les personnes ont un nom et un prénom.
+    Mais :
+        ● Un enseignant a en plus une matière enseignée.
+        ● Un étudiant a un numéro de matricule et une année d’étude.
+        ● On souhaite pouvoir afficher le détail d’un élève ou d’un enseignant
+    */
+    public abstract class Personne
     {
-        public string Nom {  get; init; }
+        public string Nom { get; init; }
         public string Prenom { get; init; }
 
-        public Personne(string  nom, string prenom)
+        public Personne(string nom, string prenom)
         {
             Nom = nom;
             Prenom = prenom;
@@ -63,7 +63,7 @@ public abstract class Personne
         public abstract override string ToString();
     }
 
-public class Enseignant : Personne
+    public class Enseignant : Personne
     {
         public string MatièreEnseignée { get; set; }
 
@@ -78,9 +78,9 @@ public class Enseignant : Personne
         }
     }
 
-public class Etudiant : Personne
+    public class Etudiant : Personne
     {
-        public string Matricule {  get; init; }
+        public string Matricule { get; init; }
 
         public Etudiant(string nom, string prénom, string matricule) : base(nom, prénom)
         {
@@ -103,7 +103,7 @@ public class Etudiant : Personne
     Spécificités :
         ● Les produits électroniques partagent les mêmes informations qu’un produit
         classique, mais avec des champs supplémentaires.
-        ● Il faut pouvoir donner la valeur totale(en €) du stock de produits.
+        ● Il faut pouvoir donner la valeur totale (en €) du stock de produits.
         ● Il faut pouvoir lister tous les produits, afficher leur quantité disponible et la valeur
         totale en stock.
         ● Il faut pouvoir encoder des produits (classiques ou électroniques)
@@ -112,6 +112,37 @@ public class Etudiant : Personne
         ● Il faut pouvoir modifier la quantité en stock d’un produit
         ● Chaque produit doit pouvoir afficher le détail de ses informations.
     */
+    public class Produit
+    {
+        public string Nom { get; init; }
+        public decimal Prix { get; init; }
 
-public class 
+        public Produit(string nom, decimal prix)
+        {
+            Nom = nom;
+            Prix = prix;
+        }
+
+        public override string ToString()
+        {
+            return $"{Nom} {Prix}";
+        }
+     }
+
+    public class ProduitElectronique : Produit
+    {
+        public string Marque { get; set; }
+        public int Garantie { get; set; }
+
+        public ProduitElectronique(string nom, decimal prix, string marque, int garantie) : base(nom, prix)
+        {
+            Marque = marque;
+            Garantie = garantie;
+        }
+    }
+
+    public class Stock
+    {
+        public dictiona
+    }
 }
