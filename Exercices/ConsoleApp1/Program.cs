@@ -3,6 +3,7 @@
 //using Exercices.ExercicesClasses;
 
 //using Exercices.ExercicesClasses;
+//using Exercices.ExercicesClasses;
 using Exercices.ExercicesHeritage;
 ///*Voiture voiture = new Voiture("Bentley", "Continental", 3);
 //voiture.Demarrer();*/
@@ -80,6 +81,13 @@ using Exercices.ExercicesHeritage;
 //Console.WriteLine(ah);
 //Console.ReadLine();
 Produit p = new Produit("Bite", 69.99m);
+Produit p2 = new Produit("Couille", 35.99m);
 ProduitElectronique pe = new ProduitElectronique("Marco", 19.99m, "Marque", 24);
-Console.WriteLine(pe);
+Dictionary<Produit, int> Produits = new Dictionary<Produit, int>();
+Produits.Add(p, 10);
+Produits.Add(p2, 10);
+Stock stock = new();
+stock.Produits = Produits;
+stock.getValue();
+Console.WriteLine(stock.getValue());
 Console.ReadLine();

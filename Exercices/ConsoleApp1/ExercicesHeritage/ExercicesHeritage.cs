@@ -1,3 +1,4 @@
+//using System.Collections.Generic;
 namespace Exercices.ExercicesHeritage
 {
     /*
@@ -143,6 +144,14 @@ namespace Exercices.ExercicesHeritage
 
     public class Stock
     {
-        public dictiona
+        public Dictionary<Produit, int> Produits {get; set;}
+        public Dictionary<ProduitElectronique, int> ProduitsElectroniques { get; set;}
+
+        public decimal getValue()
+        {
+            decimal valueProduits = Produits.Select(p => p.Key.Prix * p.Value).Sum();
+            decimal valueProduitsElectroniques = ProduitsElectroniques.Select(p => p.Key.Prix * p.Value).Sum();
+            return valueProduits + valueProduitsElectroniques;
+        }
     }
 }
